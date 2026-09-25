@@ -1,19 +1,38 @@
+// TASK N:
+
+// Shunday function yozing, u string qabul qilsin va string palindrom yani togri oqilganda ham, orqasidan oqilganda ham bir hil oqiladigan soz ekanligini aniqlab boolean qiymat qaytarsin.
+// MASALAN: palindromCheck("dad") return true;  palindromCheck("son") return false;
+
+function palindrom(str: string) {
+  const x = str.split("").reverse().join("");
+
+  if (str === x) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+console.log(palindrom("dad")); //true
+console.log(palindrom("mom")); //true
+console.log(palindrom("son")); //false
+
 // ASK M:
 
 // Shunday function yozing, u raqamlardan tashkil topgan array qabul qilsin va array ichidagi har bir raqam uchun raqamni ozi va hamda osha raqamni kvadratidan tashkil topgan object hosil qilib, hosil bolgan objectlarni array ichida qaytarsin.
 // MASALAN: getSquareNumbers([1, 2, 3]) return [{number: 1, square: 1}, {number: 2, square: 4}, {number: 3, square: 9}];
 
-function sqNumber(arr: number[]) {
-  let result = [];
+// function sqNumber(arr: number[]) {
+//   let result = [];
 
-  for (let item of arr) {
-    console.log(`number: ${item}, square: ${item * item}`);
-    result.push({ number: item, square: item * item });
-  }
-  return result;
-}
+//   for (let item of arr) {
+//     console.log(`number: ${item}, square: ${item * item}`);
+//     result.push({ number: item, square: item * item });
+//   }
+//   return result;
+// }
 
-console.log(sqNumber([5, 6, 7]));
+// console.log(sqNumber([5, 6, 7]));
 
 //  ============== TASK L: ===============
 
