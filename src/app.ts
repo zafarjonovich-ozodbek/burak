@@ -1,5 +1,7 @@
 import express from "express";
 import path from "path";
+import router from "./router";
+import routerAdmin from "./routerAdmin";
 
 /* 1-ENTERANCE(kirish) */
 const app = express();
@@ -14,5 +16,7 @@ app.set("views", path.join(__dirname, "views")); // backendda forntentni qurish(
 app.set("view engine", "ejs"); // "HTML" BACKENDda quriladi va bu "ejs" korinishidaligini aytyapmiz
 
 /* 4-ROUTERS  */
+app.use("/admin", routerAdmin); // admin uchun (BSSR: EJS)
+app.use("/", router); // userlar uchun (SPA: REACT)ni tashkillayapmiz. // "/"ga kelgan 'request'larni "router file"ga jonatyapti
 
 export default app; //ES Modules(ESM JS)da "app"ni export qlish
