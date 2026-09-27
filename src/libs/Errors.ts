@@ -3,7 +3,7 @@
      -Naming standarts:
         function, method, variable => CAMEL;
         class => PASCAL;
-        folder => KEBAB;
+        folder, file => KEBAB;
         css => SNAKE;
 **/
 
@@ -27,6 +27,7 @@ export enum Message {
 }
 
 class Errors extends Error {
+  // classni "Errors" deb nomladik va "JavaScript" ichida 'build-in' bo'lgan "Error"ga 'extends' qildik
   public code: HttpCode;
   public message: Message;
 
