@@ -3,6 +3,8 @@ dotenv.config(); // "dotenv"ning "method"i
 import mongoose from "mongoose"; // "mongoose"dan mongoose objectini yaratyapmiz
 import app from "./app";
 
+// import mongoose from "mongoose";
+
 mongoose
   .connect(process.env.MONGO_URL as string, {}) // "mongoDB"ning linkini ".env"dan chaqiryapmiz "string"ligini takidlayapmiz
   .then((data) => {
