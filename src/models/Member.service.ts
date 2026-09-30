@@ -3,6 +3,7 @@ import { MemberType } from "../libs/enums/member.enum";
 import Errors, { HttpCode, Message } from "../libs/Errors";
 import { LoginInput, Member, MemberInput } from "../libs/types/member";
 import MemberModel from "../schema/Member.model";
+import * as bcrypt from "bcryptjs";
 
 class MemberService {
   // "Ser.model" doim 'class'
@@ -19,6 +20,9 @@ class MemberService {
       .findOne({ memberType: MemberType.RESTAURANT })
       .exec();
     if (exist) throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED); // agar "exist(2ta RES)" bolsa shu "error" ishga tushadi
+
+    const salt = await bcrypt.genSalt();
+    input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
 
     // 'Schema Model'dan kelayotgan qandaydir 'error'ni emas,
     // ozimiz yaratib olgan "ERROR HANDLING"ni qaytarishni kiritdik
@@ -40,7 +44,12 @@ class MemberService {
       .exec();
     if (!member) throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
 
-    const isMatch = input.memberPassword === member.memberPassword;
+    // const isMatch = input.memberPassword === member.memberPassword;
+    const isMatch = await bcrypt.compare(
+      input.memberPassword,
+      member.memberPassword,
+    );
+
     if (!isMatch) {
       throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
     }
