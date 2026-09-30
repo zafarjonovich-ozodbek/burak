@@ -5,6 +5,7 @@ import app from "./app";
 
 // import mongoose from "mongoose";
 
+// TCP
 mongoose
   .connect(process.env.MONGO_URL as string, {}) // "mongoDB"ning linkini ".env"dan chaqiryapmiz "string"ligini takidlayapmiz
   .then((data) => {

@@ -1,6 +1,7 @@
 import { ObjectId } from "mongoose";
 import { MemberStatus, MemberType } from "../enums/member.enum";
 
+// "DATABASE"dan "BACKend"ga qaytayotgan malumot
 export interface Member {
   // _id: ObjectId;
   memberType: MemberType;
@@ -16,6 +17,7 @@ export interface Member {
   updatedAt: Date;
 }
 
+// "BACKend"dan "DATABASE"ga kirayotgan malumot
 export interface MemberInput {
   memberType?: MemberType;
   memberStatus?: MemberStatus;
@@ -26,4 +28,9 @@ export interface MemberInput {
   memberAddress?: string;
   memberDesc?: string;
   memberPoints?: number;
+}
+
+export interface LoginInput {
+  memberNick: string;
+  memberPassword: string;
 }
