@@ -1,17 +1,36 @@
+// TASK Q:
+
+// Shunday function yozing, u 2 ta parametrga ega bo'lib
+// birinchisi object, ikkinchisi string bo'lsin.
+// Agar qabul qilinayotgan ikkinchi string, objectning
+// biror bir propertysiga mos kelsa, 'true', aks holda mos kelmasa 'false' qaytarsin.
+
+// MASALAN: hasProperty({ name: "BMW", model: "M3" }, "model"); return true;
+// Ushbu misolda, 'model' string, objectning propertysiga mos kelganligi uchun 'true' natijani qaytarmoqda
+function hasProperty(obj: any, property: any) {
+  return property in obj;
+}
+
+console.log(hasProperty({ name: "BMW", model: "M3" }, "model"));
+// true
+
+console.log(hasProperty({ name: "BMW", model: "M3" }, "color"));
+// false
+
 // TASK P:
 
 // Parametr sifatida yagona object qabul qiladigan function yozing.
 // Qabul qilingan objectni nested array sifatida convert qilib qaytarsin
 
-function objectToArray(obj: any) {
-  let newObj: any[] = [];
-  for (let key in obj) {
-    newObj.push([key, obj[key]]);
-  }
-  return newObj;
-}
-const result = objectToArray({ a: 10, b: 20 });
-console.log(result);
+// function objectToArray(obj: any) {
+//   let newObj: any[] = [];
+//   for (let key in obj) {
+//     newObj.push([key, obj[key]]);
+//   }
+//   return newObj;
+// }
+// const result = objectToArray({ a: 10, b: 20 });
+// console.log(result);
 
 // TASK O:
 
