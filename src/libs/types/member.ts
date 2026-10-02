@@ -30,6 +30,7 @@ export interface MemberInput {
   memberPoints?: number;
 }
 
+// Admin Login bo'layotkanda soralayotkan malumot
 export interface LoginInput {
   memberNick: string;
   memberPassword: string;

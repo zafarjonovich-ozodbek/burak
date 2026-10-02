@@ -25,15 +25,20 @@ export enum Message {
   CREATE_FAILED = "Create is failed!",
   UPDATE_FAILED = "update is failed!",
 
-  NO_MEMBER_NICK = "No member with that nickname",
-  USED_NICK_PHONE = "You are inserting already used nick or number",
-  WRONG_PASSWORD = "Wrong password,  please try again",
+  NO_MEMBER_NICK = "No member with that nickname!",
+  USED_NICK_PHONE = "You are inserting already used nick or number!",
+  WRONG_PASSWORD = "Wrong password,  please try again!",
 }
 
 class Errors extends Error {
   // classni "Errors" deb nomladik va "JavaScript" ichida 'build-in' bo'lgan "Error"ga 'extends' qildik
   public code: HttpCode;
   public message: Message;
+
+  static standart = {
+    code: HttpCode.INTERNAL_SERVER_ERROR,
+    message: Message.SOMETHING_WENT_WRONG,
+  };
 
   constructor(statusCode: HttpCode, statusMessage: Message) {
     super();

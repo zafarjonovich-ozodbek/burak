@@ -1,5 +1,5 @@
-import dotenv from "dotenv"; // "dotenv"ni export qilyapmiz
-dotenv.config(); // "dotenv"ning "method"i
+import dotenv from "dotenv";
+dotenv.config(); // "dotenv"ning malumotlarini. "run time"da yurgizib beradi
 import mongoose from "mongoose"; // "mongoose"dan mongoose objectini yaratyapmiz
 import app from "./app";
 

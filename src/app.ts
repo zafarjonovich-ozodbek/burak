@@ -10,9 +10,9 @@ const app = express();
 app.use(express.static(path.join(__dirname, "public"))); // Middleware Pattern   // "__dirname" bu "public file"ning manzilini korsatyapti
 app.use(express.urlencoded({ extended: true })); // Middleware Pattern  //Traditional API uchun xizmat(FRONTENDdan kelayotkan malumotni BACKENDga kiritishga ruxsat)
 app.use(express.json()); // Middleware Pattern  // Rest API uchun xizmat(FRONTENDdan kelayotkan "json" malumotni BACKENDga kiritishga ruxsat)
-app.use(morgan(MORGAN_FORMAT)); // Middleware Pattern // Loyihamizga kelayotkan 'request'larni turlarini korsatib beradi
+app.use(morgan(MORGAN_FORMAT)); // Middleware Pattern // 'request'larning 'logging' jarayoni
 
-/* 2-SESSION - TAMG'A*/
+/* 2-SESSION - TAMG'A 2ta turi bor: AUTHENTICATION / AUTHORIZATION(maxsus qoshimcha xuquq)  */
 
 /* 3-VIEWS */
 app.set("views", path.join(__dirname, "views")); // backendda forntentni qurish(BSSR)

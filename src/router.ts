@@ -4,10 +4,8 @@ import memberController from "./controllers/member.controller";
 
 // REACT
 
-// router.get("/", memberController.goHome); // "ROUTER"lar aslida yo'nalishni korsatadi, "/"ga 'req' kelsa, "memberController"ning "goHome" methodga yo'naltiryapti
-
-// router.get("/login", memberController.getLogin); // "/login"ga 'req' kelsa, "memberController"ning "getLogin" methodga yo'naltiryapti
-
-// router.get("/signup", memberController.getSignup); // "/signup"ga 'req' kelsa, "memberController"ning "getSignup" methodga yo'naltiryapti
+router
+  .post("/signup", memberController.signup)
+  .post("/login", memberController.login);
 
 export default router;
