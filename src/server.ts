@@ -12,7 +12,8 @@ mongoose
     console.log("MongoDB connection succeed");
     const PORT = process.env.PORT ?? 3003; // PORTni qayerdan qabul qilishini aytyapmiz, agar PORT bolmasa 3003ni tanla deyapmiz
     app.listen(PORT, function () {
-      console.log(`The server is running succeessfully on port: ${PORT}`);
+      console.info(`The server is running succeessfully on port: ${PORT}`);
+      console.info(`Admin project on http://localhost:${PORT}/admin \n`);
     });
   })
   .catch((err) => console.log("ERROR on connection MongoDB:", err));
