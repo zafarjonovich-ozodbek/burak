@@ -62,8 +62,6 @@ class MemberService {
     const salt = await bcrypt.genSalt(); // "user" 'signup'bolganda uning "password" hash bolib qaytishi uchun
     input.memberPassword = await bcrypt.hash(input.memberPassword, salt); // va qaysi 'input' malumot nima orqali (solt) 'hash' bolishini kirityapmiz
 
-    // 'Schema Model'dan kelayotgan qandaydir 'error'ni emas,
-    // ozimiz yaratib olgan "ERROR HANDLING"ni qaytarishni kiritdik
     try {
       const result = await this.memberModel.create(input);
       result.memberPassword = "";
