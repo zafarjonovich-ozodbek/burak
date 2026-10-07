@@ -5,17 +5,14 @@ import { LoginInput, MemberInput } from "../libs/types/member";
 import Errors from "../libs/Errors";
 
 const memberService = new MemberService();
-// REACT
 
+// REACT
 const memberController: T = {};
 
 memberController.signup = async (req: Request, res: Response) => {
   try {
     const input: MemberInput = req.body,
       result = await memberService.signup(input);
-
-    // TOKEN - TAMGA QURISH
-
     res.json({ member: result });
   } catch (err) {
     console.log("Error, signup:", err);
@@ -32,9 +29,6 @@ memberController.login = async (req: Request, res: Response) => {
     console.log("login");
     const input: LoginInput = req.body,
       result = await memberService.login(input); // Service Modeldan "Controller"ga qaytaryapmiz
-
-    // TOKEN - TAMGA QURISH
-
     res.json({ member: result }); // va qaytkan malumotni jonatyapmiz
   } catch (err) {
     console.log("Error, login:", err);

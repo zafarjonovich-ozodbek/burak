@@ -5,10 +5,11 @@ import routerAdmin from "./router-admin";
 import morgan from "morgan";
 import { MORGAN_FORMAT } from "./libs/config";
 
+// TCP
 import session from "express-session";
 import ConnectMongoDB from "connect-mongodb-session";
 
-const MongoDBStore = ConnectMongoDB(session);
+const MongoDBStore = ConnectMongoDB(session); // "Function"dan "Class" yaratyapmiz
 const store = new MongoDBStore({
   uri: String(process.env.MONGO_URL), // "session" qayerda va qanday nom bilan saqlanishi
   collection: "sessions",
@@ -21,7 +22,7 @@ app.use(express.urlencoded({ extended: true })); // Middleware Pattern  //Tradit
 app.use(express.json()); // Middleware Pattern  // Rest API uchun xizmat(FRONTENDdan kelayotkan "json" malumotni BACKENDga kiritishga ruxsat)
 app.use(morgan(MORGAN_FORMAT)); // Middleware Pattern // 'request'larning 'logging' jarayoni
 
-/* 2-SESSION - TAMG'A 2ta turi bor: AUTHENTICATION / AUTHORIZATION(maxsus qoshimcha xuquq)  */
+/* 2-SESSION (TAMG'A) */
 app.use(
   session({
     secret: String(process.env.SESSION_SECRET),
@@ -30,7 +31,7 @@ app.use(
     },
     store: store, // 'session' qayerda xosil bolishini kirityapmiz (12-qatordagi 'store')
     resave: true, // "session" vaqti xarkirganda 'update' bolishi uchun 'true'
-    saveUninitialized: true,
+    saveUninitialized: true, // "signup" bolmasdan foydalanayotkan 'user'lar uchun bosh 'cookie' yaratib beradi
   }),
 );
 

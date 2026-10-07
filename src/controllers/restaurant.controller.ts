@@ -48,7 +48,7 @@ restaurantController.processSignup = async (
 
     const result = await memberService.processSignup(newMember); // "Ser.model"ning 'method'ni chaqirdik
 
-    req.session.member = result;
+    req.session.member = result; // COOKIE[sid] & DB.sessions.+member
     req.session.save(function () {
       res.send(result);
     });
