@@ -13,7 +13,7 @@ function missingNumber(numbers: any) {
 
 console.log(missingNumber([3, 0, 1])); // 2
 console.log(missingNumber([0, 1])); // 2
-console.log(missingNumber([2, 3, 5, 0, 1])); //
+console.log(missingNumber([2, 3, 5, 0, 1])); // 4
 
 // TASK R:
 
