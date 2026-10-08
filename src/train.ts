@@ -1,3 +1,20 @@
+// TASK S:
+
+// Shunday function yozing, u numberlardan tashkil topgan array qabul
+//  qilsin va osha numberlar orasidagi tushib qolgan sonni topib uni return qilsin
+// MASALAN: missingNumber([3, 0, 1]) return 2
+function missingNumber(numbers: any) {
+  for (let i = 0; i <= numbers.length; i++) {
+    if (!numbers.includes(i)) {
+      return i;
+    }
+  }
+}
+
+console.log(missingNumber([3, 0, 1])); // 2
+console.log(missingNumber([0, 1])); // 2
+console.log(missingNumber([2, 3, 5, 0, 1])); //
+
 // TASK R:
 
 // Shunday function yozing, u string parametrga ega bo'lsin.
@@ -6,17 +23,17 @@
 
 // MASALAN: calculate("1 + 3"); return 4;
 // 1 + 3 = 4, shu sababli 4 natijani qaytarmoqda.
-function calculate(str: any) {
-  return str
-    .split("+")
-    .map(Number)
-    .reduce((sum: any, number: any) => sum + number, 0);
-}
+// function calculate(str: any) {
+//   return str
+//     .split("+")
+//     .map(Number)
+//     .reduce((sum: any, number: any) => sum + number, 0);
+// }
 
-console.log(calculate("1 + 3")); // 4
-console.log(calculate("10 + 20 + 5")); // 35
+// console.log(calculate("1 + 3")); // 4
+// console.log(calculate("10 + 20 + 5")); // 35
 
-// TASK Q:
+// // TASK Q:
 
 // Shunday function yozing, u 2 ta parametrga ega bo'lib
 // birinchisi object, ikkinchisi string bo'lsin.
