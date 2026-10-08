@@ -30,7 +30,7 @@ routerAdmin.get(
 routerAdmin.post(
   "/product/create",
   restaurantController.verifyRestaurant,
-  makeUploader("products").single("productImage"),
+  makeUploader("products").array("productImages", 5),
   /* uploadProductImage.single("productImage"), */
   productController.createNewProduct,
 );
