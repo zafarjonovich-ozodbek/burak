@@ -10,32 +10,17 @@ function getTargetImageStorage(address: any) {
     },
     filename: function (req, file, cb) {
       console.log(file);
-      const extension = path.parse(file.originalname).ext;
-      const random_name = v4() + extension;
+      const extension = path.parse(file.originalname).ext; // file'ni nomini
+      const random_name = v4() + extension; // o'zgartirib yuklash uchun
       cb(null, random_name);
     },
   });
 }
 
+// makeUploader: function > create "multer obj"
 const makeUploader = (address: string) => {
   const storage = getTargetImageStorage(address);
-  return multer({ storage: storage });
+  return multer({ storage: storage }); // qayerga file yuklab berishini korsatyapmiz(tepadagi storage)
 };
 
 export default makeUploader;
-
-/*
-const product_storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "./uploads/products");
-  },
-  filename: function (req, file, cb) {
-    console.log(file);
-    const extension = path.parse(file.originalname).ext;
-    const random_name = v4() + extension;
-    cb(null, random_name);
-  },
-});
-
-export const uploadProductImage = multer({ storage: product_storage });
-*/

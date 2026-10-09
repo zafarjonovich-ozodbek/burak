@@ -42,14 +42,13 @@ const productSchema = new Schema(
     },
 
     productVolume: {
-      type: String,
+      type: Number,
       enum: ProductVolume,
       default: ProductVolume.ONE,
     },
 
     productDesc: {
       type: String,
-      required: true,
     },
 
     productImages: {
@@ -66,8 +65,8 @@ const productSchema = new Schema(
 );
 
 productSchema.index(
-  { productName: 1, productSize: 1, productVolume: 1 },
-  { unique: true },
+  { productName: 1, productSize: 1, productVolume: 1 }, // misol: COLANORMAL0.5
+  { unique: true }, // "nickname"dagi 'unique' bilan farqi buyerda bitta maxsulot, birxil size bilan birmarta ishlatiladi
 );
 
 export default mongoose.model("Product", productSchema); // "memberSchema" bu 'object' edi, "MODEL"ga aylanktirib olish uchun

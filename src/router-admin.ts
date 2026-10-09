@@ -24,14 +24,13 @@ routerAdmin.get("/check-me", restaurantController.checkAuthSession);
 /** Product */
 routerAdmin.get(
   "/product/all",
-  restaurantController.verifyRestaurant,
+  restaurantController.verifyRestaurant, // AUTHERIZATION M-W
   productController.getAllProducts,
 );
 routerAdmin.post(
   "/product/create",
-  restaurantController.verifyRestaurant,
-  makeUploader("products").array("productImages", 5),
-  /* uploadProductImage.single("productImage"), */
+  restaurantController.verifyRestaurant, // AUTHERIZATION M_W
+  makeUploader("products").array("productImages", 5), // UPLOADER M-W
   productController.createNewProduct,
 );
 routerAdmin.post(

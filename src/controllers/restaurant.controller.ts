@@ -3,7 +3,7 @@ import { T } from "../libs/types/common";
 import MemberService from "../models/Member.service";
 import { AdminRequest, LoginInput, MemberInput } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.enum";
-import Errors, { Message } from "../libs/Errors";
+import Errors, { HttpCode, Message } from "../libs/Errors";
 
 const memberService = new MemberService();
 
@@ -43,14 +43,19 @@ restaurantController.processSignup = async (
   res: Response,
 ) => {
   try {
-    const newMember: MemberInput = req.body; // 'frontend'dan kirib kelayotkan malumotni "newMember"ga tenglab, uning 'memberType'sini kiritdik
-    newMember.memberType = MemberType.RESTAURANT; // bu 'singup' "RESTAURANT"ga tegishli ekanligini korsatdik
+    console.log("processSignup");
+    const file = req.file;
+    if (!file)
+      throw new Errors(HttpCode.BAD_REQUEST, Message.SOMETHING_WENT_WRONG);
 
+    const newMember: MemberInput = req.body; // 'frontend'dan kirib kelayotkan malumotni "newMember"ga tenglab, uning 'memberType'sini kiritdik
+    newMember.memberImage = file?.path;
+    newMember.memberType = MemberType.RESTAURANT; // bu 'singup' "RESTAURANT"ga tegishli ekanligini korsatdik
     const result = await memberService.processSignup(newMember); // "Ser.model"ning 'method'ni chaqirdik
 
     req.session.member = result; // COOKIE[sid] & DB.sessions.+member
     req.session.save(function () {
-      res.send(result);
+      res.redirect("/admin/product/all");
     });
   } catch (err) {
     console.log("Error, processSignup:", err);
@@ -74,7 +79,7 @@ restaurantController.processLogin = async (
 
     req.session.member = result;
     req.session.save(function () {
-      res.send(result);
+      res.redirect("/admin/product/all");
     });
   } catch (err) {
     console.log("Error, processLogin:", err);

@@ -5,7 +5,7 @@ import routerAdmin from "./router-admin";
 import morgan from "morgan";
 import { MORGAN_FORMAT } from "./libs/config";
 
-// TCP
+// TCP2
 import session from "express-session";
 import ConnectMongoDB from "connect-mongodb-session";
 import { T } from "./libs/types/common";
@@ -24,6 +24,9 @@ app.use(express.json()); // Middleware Pattern  // Rest API uchun xizmat(FRONTEN
 app.use(morgan(MORGAN_FORMAT)); // Middleware Pattern // 'request'larning 'logging' jarayoni
 
 /* 2-SESSION (TAMG'A) */
+
+// LOGIN: req.+session | OTHER REQ: req.session.+member
+// COOKIE[SID] > DATABASE > req.session.member
 app.use(
   session({
     secret: String(process.env.SESSION_SECRET),
