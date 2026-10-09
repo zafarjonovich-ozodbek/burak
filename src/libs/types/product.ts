@@ -34,6 +34,7 @@ export interface ProductInput {
   productViews?: number;
 }
 
+// "FRONTEND"da update qilayotgan product
 export interface ProductUpdateInput {
   _id: Types.ObjectId;
   productStatus?: ProductStatus;
