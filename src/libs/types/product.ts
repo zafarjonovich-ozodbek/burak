@@ -23,14 +23,14 @@ export interface Product {
 // "FRONTEND"da 'create' qilib kiritayotkan malumotlarimiz
 export interface ProductInput {
   productStatus?: ProductStatus;
-  productCollection?: ProductCollection;
+  productCollection: ProductCollection;
   productName: string;
   productPrice: number;
   productLeftCount: number;
   productSize?: number;
   productVolume?: number;
   productDesc?: string;
-  productImages?: string[];
+  productImages: string[];
   productViews?: number;
 }
 
