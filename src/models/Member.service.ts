@@ -48,7 +48,7 @@ class MemberService {
     }
 
     const result = await this.memberModel.findById(member._id).lean().exec(); // 'findById' - static method
-    return result as Member; /** shuyerini ozim qoshtim, error beryotkandi */
+    return result as Member;
   }
 
   /** BSSR - Adminka */
