@@ -82,7 +82,6 @@ class MemberService {
     // agar bunday malumotli 'member' bolmasa shu 'error'ni qaytaradi
     if (!member) throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
 
-    console.log(4);
     // biz kiritgan 'password' bilan 'database'dagi 'hash password'ni solishtiryapmiz
     const isMatch = await bcrypt.compare(
       input.memberPassword,
@@ -93,13 +92,18 @@ class MemberService {
       throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
     }
 
-    console.log(5);
     const result = await this.memberModel.findById(member._id).exec(); // 'findById' - static method
     return result as Member; /** shuyerini ozim qoshtim, error beryotkandi */
+  }
+
+  public async getUsers(): Promise<Member[]> {
+    const result = await this.memberModel
+      .find({ memberType: MemberType.USER })
+      .exec();
+    if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+
+    return result as Member[];
   }
 }
 
 export default MemberService;
-function processLogin(input: any, LoginInput: any) {
-  throw new Error("Function not implemented.");
-}
