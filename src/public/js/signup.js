@@ -1,5 +1,6 @@
 console.log("Signup frontend javascript file");
 
+// "Image Preloading" - ozini qoymoqchi bolgan 'image'ni chap tarafdagi joyda qanday korinishini oldindan bilishi uchun
 $(function () {
   const fileTarget = $(".file-box .upload-hidden");
   let filename;
@@ -14,7 +15,7 @@ $(function () {
         alert("Please insert only png, jpg and jpeg!");
       } else {
         if (uploadFile) {
-          console.log(URL.createObjectURL(uploadFile)); // blob
+          console.log(URL.createObjectURL(uploadFile)); // URL blob
           $(".upload-img-frame")
             .attr("src", URL.createObjectURL(uploadFile))
             .addClass("success");
@@ -26,12 +27,14 @@ $(function () {
   });
 });
 
+// Frontend Validator | "signup"dagi "input"larni ushlab olyapmiz
 function validateSignupForm() {
   const memberNick = $(".member-nick").val();
   const memberPhone = $(".member-phone").val();
   const memberPassword = $(".member-password").val();
   const confirmPassword = $(".confirm-password").val();
 
+  //   Frontend Validator shartlari(tekshiruvlari):
   if (
     memberNick === "" ||
     memberPhone === "" ||
