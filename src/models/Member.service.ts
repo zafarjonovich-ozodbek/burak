@@ -1,6 +1,6 @@
 // import Errors, { HttpCode, Message } from "../libs/errors";
 import { shapeIntoMongooseObjectId } from "../libs/config";
-import { MemberType } from "../libs/enums/member.enum";
+import { MemberStatus, MemberType } from "../libs/enums/member.enum";
 import Errors, { HttpCode, Message } from "../libs/Errors";
 import {
   LoginInput,
@@ -34,14 +34,19 @@ class MemberService {
   }
 
   public async login(input: LoginInput): Promise<Member> {
-    // TODO: Consider member status later!!!
     const member = await this.memberModel
       .findOne(
-        { memberNick: input.memberNick }, //"schema"dan biz kiritgan 'input malumot'ga teng malumotni 'database'dan olib berishini talab qilyapmiz
-        { memberNick: 1, memberPassword: 1 }, // 'terminal'ga  "password" kelmaydi, shu sabab togrimi yoqmi tekshirish uchun majburan chaqiryapmiz, "1"-bu 'database'dan olib berishni bildiradi
+        {
+          memberNick: input.memberNick,
+          memberStatus: { $ne: MemberStatus.DELETE },
+        },
+        { memberNick: 1, memberPassword: 1, memberStatus: 1 }, // 'terminal'da "password"ni majburan chaqiryapmiz, "1"-bu 'database'dan olib berishi uchun
       )
       .exec();
     if (!member) throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
+    else if (member.memberStatus === MemberStatus.BLOCK) {
+      throw new Errors(HttpCode.FORBIDDEN, Message.BLOCKED_USER);
+    }
 
     // login 'password' bilan 'database'dagi 'hash password'ni compare
     const isMatch = await bcrypt.compare(

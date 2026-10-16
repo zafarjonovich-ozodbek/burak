@@ -8,7 +8,6 @@ $(function () {
     const memberStatus = $(`#${id}.member-status`).val();
     console.log("memberStatus:", memberStatus);
 
-    // TODO: Axios updateChosenUser
     axios
       .post("/admin/user/edit", {
         _id: id,
