@@ -59,6 +59,18 @@ class MemberService {
     }
 
     const result = await this.memberModel.findById(member._id).lean().exec(); // 'findById' - static method
+
+    //@ts-ignore
+    return result as Member;
+  }
+
+  public async getMemberDetail(member: Member): Promise<Member> {
+    const memberId = shapeIntoMongooseObjectId(member._id);
+    const result = await this.memberModel
+      .findOne({ _id: memberId, memberStatus: MemberStatus.ACTIVE })
+      .exec();
+    if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+    //@ts-ignore
     return result as Member;
   }
 
@@ -76,6 +88,7 @@ class MemberService {
     try {
       const result = await this.memberModel.create(input);
       result.memberPassword = "";
+      //@ts-ignore
       return result as Member;
     } catch (err) {
       throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
@@ -104,6 +117,7 @@ class MemberService {
     }
 
     const result = await this.memberModel.findById(member._id).exec(); // 'findById' - static method
+    //@ts-ignore
     return result as Member; /** shuyerini ozim qoshtim, error beryotkandi */
   }
 
@@ -112,7 +126,7 @@ class MemberService {
       .find({ memberType: MemberType.USER })
       .exec();
     if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
-
+    //@ts-ignore
     return result as Member[];
   }
 
@@ -122,7 +136,7 @@ class MemberService {
       .findByIdAndUpdate({ _id: input._id }, input, { new: true })
       .exec();
     if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
-
+    //@ts-ignore
     return result as Member;
   }
 }

@@ -7,7 +7,11 @@ router
   .post("/member/signup", memberController.signup)
   .post("/member/login", memberController.login)
   .post("/member/logout", memberController.verifyAuth, memberController.logout)
-  .get("/member/detail", memberController.verifyAuth);
+  .get(
+    "/member/detail",
+    memberController.verifyAuth,
+    memberController.getMemberDetail,
+  );
 
 /**  Product **/
 
