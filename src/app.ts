@@ -4,6 +4,7 @@ import router from "./router";
 import routerAdmin from "./router-admin";
 import morgan from "morgan";
 import { MORGAN_FORMAT } from "./libs/config";
+import cookieParser from "cookie-parser";
 
 // TCP2
 import session from "express-session";
@@ -21,6 +22,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, "public"))); // Middleware Pattern   // "__dirname" bu "public file"ning manzilini korsatyapti
 app.use(express.urlencoded({ extended: true })); // Middleware Pattern  //Traditional API uchun xizmat(FRONTENDdan kelayotkan malumotni BACKENDga kiritishga ruxsat)
 app.use(express.json()); // Middleware Pattern  // Rest API uchun xizmat(FRONTENDdan kelayotkan "json" malumotni BACKENDga kiritishga ruxsat)
+app.use(cookieParser());
 app.use(morgan(MORGAN_FORMAT)); // Middleware Pattern // 'request'larning 'logging' jarayoni
 
 /* 2-SESSION (TAMG'A) */
