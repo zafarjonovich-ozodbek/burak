@@ -20,7 +20,9 @@ router
     memberController.verifyAuth,
     uploader("member").single("memberImage"),
     memberController.updateMember,
-  );
+  )
+
+  .get("/member/top-users", memberController.getTopUsers);
 
 /**  Product **/
 

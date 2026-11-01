@@ -88,6 +88,21 @@ class MemberService {
     return result as Member;
   }
 
+  public async getTopUsers(): Promise<Member[]> {
+    const result = await this.memberModel
+      .find({
+        memberStatus: MemberStatus.ACTIVE,
+        memberPoinst: { $gte: 1 }, //eng kami '1point'ga ega bolganlar
+      })
+      .sort({ memberPoints: -1 }) // yuqoridan => pastga
+      .limit(4) // nechta 'top user'ni korsatishi
+      .exec();
+
+    if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+
+    return result as Member[];
+  }
+
   /** BSSR - Adminka */
   public async processSignup(input: MemberInput): Promise<Member> {
     const exist = await this.memberModel // "exist" - agar 1ta "RES" bolsa va yana boshqa "RES" kiritsak, 1-"RES" haqida malumot qaytaradi
