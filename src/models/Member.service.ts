@@ -105,7 +105,7 @@ class MemberService {
     const result = await this.memberModel
       .find({
         memberStatus: MemberStatus.ACTIVE,
-        memberPoinst: { $gte: 1 }, //eng kami '1point'ga ega bolganlar
+        memberPoints: { $gte: 1 }, //eng kami '1point'ga ega bolganlar
       })
       .sort({ memberPoints: -1 }) // yuqoridan => pastga
       .limit(4) // nechta 'top user'ni korsatishi
