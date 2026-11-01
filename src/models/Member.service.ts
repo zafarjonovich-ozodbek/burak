@@ -74,6 +74,20 @@ class MemberService {
     return result as Member;
   }
 
+  public async updateMember(
+    member: Member,
+    input: MemberUpdateInput,
+  ): Promise<Member> {
+    const memberId = shapeIntoMongooseObjectId(member._id);
+    const result = await this.memberModel
+      .findOneAndUpdate({ _id: memberId }, input, { new: true })
+      .exec();
+
+    if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
+
+    return result as Member;
+  }
+
   /** BSSR - Adminka */
   public async processSignup(input: MemberInput): Promise<Member> {
     const exist = await this.memberModel // "exist" - agar 1ta "RES" bolsa va yana boshqa "RES" kiritsak, 1-"RES" haqida malumot qaytaradi

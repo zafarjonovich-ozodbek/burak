@@ -5,7 +5,7 @@ import { Request } from "express";
 
 // "DATABASE"dan "BACKend"ga qaytayotgan malumot
 export interface Member {
-  _id: ObjectId;
+  _id: Types.ObjectId;
   memberType: MemberType;
   memberStatus: MemberStatus;
   memberNick: string;

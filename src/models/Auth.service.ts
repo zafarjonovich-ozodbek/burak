@@ -10,11 +10,13 @@ class AuthService {
     this.secretToken = process.env.SECRET_TOKEN as string;
   }
 
+  //   MEMBER => TOKEN
+  //   MEMBER'ning malumotlarindan "jibrish TOKEN" yaratib oldik
   public async createToken(payload: Member) {
     return new Promise((resolve, reject) => {
       const duration = `${AUTH_TIMER}h`;
       jwt.sign(
-        payload,
+        payload, // = member data
         process.env.SECRET_TOKEN as string,
         {
           expiresIn: duration,
@@ -30,6 +32,8 @@ class AuthService {
     });
   }
 
+  //   TOKEN => MEMBER
+  //   osha ozi yaratgan "TOKEN"ni "VERIFY" qilyapti ichidagi "SECRET_TOKEN" bilan
   public async chechAuth(token: string): Promise<Member> {
     const result: Member = (await jwt.verify(
       token,

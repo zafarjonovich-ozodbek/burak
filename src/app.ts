@@ -4,9 +4,9 @@ import router from "./router";
 import routerAdmin from "./router-admin";
 import morgan from "morgan";
 import { MORGAN_FORMAT } from "./libs/config";
-import cookieParser from "cookie-parser";
+import cookieParser from "cookie-parser"; // "req.cookie" larni oqaolish uchun(TOKEN)
 
-// TCP2
+// TCP2 (with session)
 import session from "express-session";
 import ConnectMongoDB from "connect-mongodb-session";
 import { T } from "./libs/types/common";
@@ -20,6 +20,7 @@ const store = new MongoDBStore({
 /* 1-ENTERANCE(kirish) */
 const app = express();
 app.use(express.static(path.join(__dirname, "public"))); // Middleware Pattern   // "__dirname" bu "public file"ning manzilini korsatyapti
+app.use("/uploads", express.static("./uploads"));
 app.use(express.urlencoded({ extended: true })); // Middleware Pattern  //Traditional API uchun xizmat(FRONTENDdan kelayotkan malumotni BACKENDga kiritishga ruxsat)
 app.use(express.json()); // Middleware Pattern  // Rest API uchun xizmat(FRONTENDdan kelayotkan "json" malumotni BACKENDga kiritishga ruxsat)
 app.use(cookieParser());
